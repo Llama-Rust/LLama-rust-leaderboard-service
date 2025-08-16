@@ -1,20 +1,20 @@
 {
-  "name": "llama-rust-leaderboard-service",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "rust-leaderboard-service",
+  "version": "0.1.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dwalley606/LLama-rust-leaderboard-service.git"
+  "dependencies": {
+    "@fastify/cors": "^10.0.0",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.28.1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dwalley606/LLama-rust-leaderboard-service/issues"
-  },
-  "homepage": "https://github.com/dwalley606/LLama-rust-leaderboard-service#readme",
-  "description": ""
+  "devDependencies": {
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
+  }
 }
+
