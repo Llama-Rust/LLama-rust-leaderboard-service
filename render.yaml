@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: llama-rust-leaderboard-service
+    env: docker
+    plan: starter
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: RCON_HOST
+        sync: false
+      - key: RCON_PORT
+        sync: false
+      - key: RCON_PASSWORD
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: POLL_TOKEN
+        sync: false  # set a secret to protect /poll
+  - type: cron
+    name: llama-rust-leaderboard-cron
+    schedule: "*/1 * * * *"
+    env: docker
+    autoDeploy: true
+    command: "curl -s -X POST -H 'x-poll-token: $POLL_TOKEN' http://llama-rust-leaderboard-service:8080/poll || true"
