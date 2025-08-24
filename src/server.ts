@@ -92,4 +92,17 @@ async function start() {
   }
 }
 
+// Enable with env POLL_SELF_SCHEDULE=1
+if (process.env.POLL_SELF_SCHEDULE === '1') {
+  const intervalMs = Number(process.env.POLL_INTERVAL_MS || 60000);
+  setInterval(async () => {
+    try {
+      await pollOnce();
+      console.log('[poll] ok');
+    } catch (e) {
+      console.error('[poll] error', e);
+    }
+  }, intervalMs);
+}
+
 start();
