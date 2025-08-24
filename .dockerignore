@@ -1,0 +1,26 @@
+# dependencies & builds
+node_modules
+dist
+
+# vcs & tooling
+.git
+.gitignore
+.github
+.vscode
+.idea
+
+# logs & caches
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.DS_Store
+
+# misc
+Dockerfile
+docker-compose.yml
+render.yaml
+README.md
+.env
+.env.local
+
