@@ -1,6 +1,6 @@
-import { getRconSnapshot } from './rcon/real';
+import { getRconSnapshot } from './rcon/real.js';
 // import { ConsoleStorage } from './storage/console';
-import { SupabaseStorage } from './storage/supabase';
+import { SupabaseStorage } from './storage/supabase.js';
 
 export async function pollOnce() {
   const snap = await getRconSnapshot();

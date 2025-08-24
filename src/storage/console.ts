@@ -1,4 +1,4 @@
-import type { ServerSnapshot } from '../rcon';
+import type { ServerSnapshot } from '../rcon/index.js';
 
 export class ConsoleStorage {
   async writeSnapshot(s: ServerSnapshot) {

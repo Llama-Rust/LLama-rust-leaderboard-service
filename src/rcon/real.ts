@@ -1,5 +1,5 @@
-import type { ServerSnapshot } from './index';
-import { env } from '../utils/env';
+import type { ServerSnapshot } from './index.js';
+import { env } from '../utils/env.js';
 import WebSocket from 'ws';
 
 type WebRconMsg = { Identifier: number; Message: string; Name: string; Type: string; };

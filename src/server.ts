@@ -1,8 +1,8 @@
 // src/server.ts
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
-import { env } from './utils/env';
-import { pollOnce } from './poller';
+import { env } from './utils/env.js';
+import { pollOnce } from './poller.js';
 import { createClient } from '@supabase/supabase-js';
 
 // Create a Supabase client for read-backs (service key is fine here; if you prefer, swap to anon for reads)
