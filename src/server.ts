@@ -4,6 +4,7 @@ import cors from '@fastify/cors';
 import { env } from './utils/env.js';
 import { pollOnce } from './poller.js';
 import { createClient } from '@supabase/supabase-js';
+import events from "./routes/events.js";
 
 // Create a Supabase client for read-backs (service key is fine here; if you prefer, swap to anon for reads)
 const supabase = createClient(env.SUPABASE_URL || '', env.SUPABASE_SERVICE_KEY || '', {
@@ -15,6 +16,7 @@ function buildServer() {
 
   // Plugins
   app.register(cors, { origin: true });
+  app.register(events, { prefix: "/events" })
 
   // Friendly landing page (so hitting "/" in a browser isn't a 404)
   app.get('/', async () => ({

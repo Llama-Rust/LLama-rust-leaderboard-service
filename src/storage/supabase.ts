@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import type { ServerSnapshot } from '../rcon/index.js';
 import { env } from '../utils/env.js';
 
-const supabase = createClient(env.SUPABASE_URL!, env.SUPABASE_SERVICE_KEY!, {
+export const supabase = createClient(env.SUPABASE_URL!, env.SUPABASE_SERVICE_KEY!, {
   auth: { persistSession: false }
 });
 
