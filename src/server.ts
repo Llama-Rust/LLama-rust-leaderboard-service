@@ -80,6 +80,16 @@ function buildServer() {
     }
   });
 
+  // after buildServer();
+  app.log.info(
+    {
+      hasWebhookSecret: !!(process.env.WEBHOOK_SECRET || process.env.INGEST_SECRET),
+      pollSelfSchedule: process.env.POLL_SELF_SCHEDULE === '1',
+      pollIntervalMs: Number(process.env.POLL_INTERVAL_MS || 60000),
+    },
+    'boot:env-status',
+  );
+
   return app;
 }
 
@@ -97,14 +107,18 @@ async function start() {
 // Enable with env POLL_SELF_SCHEDULE=1
 if (process.env.POLL_SELF_SCHEDULE === '1') {
   const intervalMs = Number(process.env.POLL_INTERVAL_MS || 60000);
+  console.log(`[poller] start, interval=${intervalMs}ms`);
   setInterval(async () => {
+    const t0 = Date.now();
+    console.log('[poller] tick:start');
     try {
       await pollOnce();
-      console.log('[poll] ok');
+      console.log('[poller] tick:ok', Date.now() - t0, 'ms');
     } catch (e) {
-      console.error('[poll] error', e);
+      console.error('[poller] tick:error', e);
     }
   }, intervalMs);
 }
+
 
 start();
